@@ -9,10 +9,14 @@ namespace Entity
         public double Discount { get; set; }
         public int SquareMeters { get; set; }
         public int BedsCount { get; set; }
-        public bool AllInclusive { get; set; }
         public bool IsEmpty { get; set; }
         public DateTime EntryDate { get; set; }
         public DateTime ReleaseDate { get; set; }
         public int GuestCapacity { get; set; }
+        public int InnerRoomCount { get; set; }
+        public bool Tv { get; set; }
+
+        public int HotelId { get; set; }
+        public Hotel? Hotel { get; set; }
     }
 }
