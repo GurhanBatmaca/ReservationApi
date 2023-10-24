@@ -23,7 +23,7 @@ namespace Data.Concrete
             modelBuilder.ApplyConfiguration(new HotelConfiguration());
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
 
-            modelBuilder.SeedData();
+            // modelBuilder.SeedData();
         }
 
 
