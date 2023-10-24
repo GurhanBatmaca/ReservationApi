@@ -1,4 +1,5 @@
 using Data.Configurations;
+using Data.Extentions;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,8 @@ namespace Data.Concrete
             modelBuilder.ApplyConfiguration(new CompanyConfiguration());
             modelBuilder.ApplyConfiguration(new HotelConfiguration());
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
+
+            modelBuilder.SeedData();
         }
 
 
