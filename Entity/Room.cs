@@ -15,6 +15,7 @@ namespace Entity
         public int GuestCapacity { get; set; }
         public int InnerRoomCount { get; set; }
         public bool Tv { get; set; }
+        public string? ImageUrl { get; set; }
 
         public int HotelId { get; set; }
         public Hotel? Hotel { get; set; }

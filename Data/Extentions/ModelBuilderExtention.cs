@@ -60,7 +60,8 @@ namespace Data.Extentions
                     GuestCapacity=5,
                     InnerRoomCount=3,
                     Tv=true,
-                    HotelId=1
+                    HotelId=1,
+                    ImageUrl = "room-1.jpg"
                 },
                 new Room 
                 {
@@ -75,7 +76,8 @@ namespace Data.Extentions
                     GuestCapacity=5,
                     InnerRoomCount=3,
                     Tv=true,
-                    HotelId=1
+                    HotelId=1,
+                    ImageUrl = "room-2.jpg"
                 },
                 new Room 
                 {
@@ -90,7 +92,8 @@ namespace Data.Extentions
                     GuestCapacity=5,
                     InnerRoomCount=3,
                     Tv=true,
-                    HotelId=2
+                    HotelId=2,
+                    ImageUrl = "room-3.jpg"
                 },
                 new Room 
                 {
@@ -105,7 +108,8 @@ namespace Data.Extentions
                     GuestCapacity=5,
                     InnerRoomCount=3,
                     Tv=true,
-                    HotelId=2
+                    HotelId=2,
+                    ImageUrl = "room-4.jpg"
                 }
             );
 
@@ -119,7 +123,8 @@ namespace Data.Extentions
                     RoomService=true,
                     AllInclusive=true,
                     CityId=1,
-                    CompanyId=1
+                    CompanyId=1,
+                    ImageUrl = "hotel-1.jpg"
                 },
                 new Hotel {
                     HotelId=2,
@@ -129,7 +134,8 @@ namespace Data.Extentions
                     RoomService=true,
                     AllInclusive=true,
                     CityId=1,
-                    CompanyId=2
+                    CompanyId=2,
+                    ImageUrl = "hotel-2.jpg"
                 },
                 new Hotel {
                     HotelId=3,
@@ -139,7 +145,8 @@ namespace Data.Extentions
                     RoomService=true,
                     AllInclusive=true,
                     CityId=2,
-                    CompanyId=3
+                    CompanyId=3,
+                    ImageUrl = "hotel-3.jpg"
                 },
                 new Hotel {
                     HotelId=4,
@@ -149,7 +156,8 @@ namespace Data.Extentions
                     RoomService=true,
                     AllInclusive=true,
                     CityId=2,
-                    CompanyId=4
+                    CompanyId=4,
+                    ImageUrl = "hotel-4.jpg"
                 }
             );
 

@@ -4,7 +4,6 @@ namespace Entity
     {
         public int CityId { get; set; }
         public string? Name { get; set; }
-
         public List<Hotel>? Hotels { get; set; }
     }
 }
