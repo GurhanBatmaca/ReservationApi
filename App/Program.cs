@@ -1,3 +1,4 @@
+using Business.Abstract;
 using Data;
 using Data.Concrete;
 using Data.Concrete.EfCore;
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<ReservationContext>(options => {
 });
 
 builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+
+builder.Services.AddScoped<IHotelService,HotelManager>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
