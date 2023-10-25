@@ -23,5 +23,11 @@ namespace Data.Concrete.EfCore
             return await hotels.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
         }
 
+        public async Task<int> GetHomePageHotelsCount()
+        {
+            return await Context!.Hotels
+                                .Where(i=>i.IsHome)
+                                .CountAsync();
+        }
     }
 }

@@ -1,6 +1,7 @@
 using Data;
 using Entity;
 using Shared.DTO.Models;
+using Shared.Helpers;
 
 namespace Business.Abstract
 {
@@ -11,10 +12,12 @@ namespace Business.Abstract
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<List<HotelDTO>> GetHomePageHotels(int page)
+        public async Task<HotelListDTO> GetHomePageHotels(int page)
         {
-            var pageSize = 3;
+            var pageSize = 2;
+
             var hotels = await _unitOfWork.Hotels.GetHomePageHotels(page,pageSize);
+            var hotelsCount = await _unitOfWork.Hotels.GetHomePageHotelsCount();
 
             var hotelDtoList = hotels.Select(i=> new HotelDTO
             {
@@ -35,7 +38,13 @@ namespace Business.Abstract
                 }
             });
 
-            return hotelDtoList.ToList();
+            var hotelListDTO = new HotelListDTO 
+            {
+                Hotels = hotelDtoList.ToList(),
+                Pages = PageCountCeiling.Ceiling(hotelsCount,pageSize)
+            };
+
+            return hotelListDTO;
         }
 
     }

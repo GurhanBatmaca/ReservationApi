@@ -5,6 +5,6 @@ namespace Business.Abstract
 {
     public interface IHotelService
     {
-        Task<List<HotelDTO>> GetHomePageHotels(int page);
+        Task<HotelListDTO> GetHomePageHotels(int page);
     }
 }

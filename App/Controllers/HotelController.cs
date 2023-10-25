@@ -20,6 +20,11 @@ namespace App.Controllers
         public async Task<IActionResult> GetHomePageHotel(int page=1)
         {
             var hotels = await _hotelService.GetHomePageHotels(page);
+            
+            if(hotels == null)
+            {
+                return BadRequest();
+            }
 
             return Ok(hotels);
         }
