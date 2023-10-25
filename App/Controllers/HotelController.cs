@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace App.Controllers
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/")]
     public class HotelController: ControllerBase
     {
         protected readonly IHotelService _hotelService;
@@ -15,9 +15,9 @@ namespace App.Controllers
         }
 
         [HttpGet]
-        [Route("hotels")]
+        [Route("homepagehotels")]
 
-        public async Task<IActionResult> GetHotel(int page=1)
+        public async Task<IActionResult> GetHomePageHotel(int page=1)
         {
             var hotels = await _hotelService.GetHomePageHotels(page);
 
