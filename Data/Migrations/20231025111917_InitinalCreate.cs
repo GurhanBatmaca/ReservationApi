@@ -50,6 +50,8 @@ namespace Data.Migrations
                     TotalRoom = table.Column<int>(type: "int", nullable: false),
                     RoomService = table.Column<bool>(type: "bit", nullable: false),
                     AllInclusive = table.Column<bool>(type: "bit", nullable: false),
+                    IsHome = table.Column<bool>(type: "bit", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     CompanyId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -88,6 +90,7 @@ namespace Data.Migrations
                     GuestCapacity = table.Column<int>(type: "int", nullable: false),
                     InnerRoomCount = table.Column<int>(type: "int", nullable: false),
                     Tv = table.Column<bool>(type: "bit", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotelId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -126,24 +129,24 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Hotels",
-                columns: new[] { "HotelId", "AllInclusive", "CityId", "CompanyId", "Name", "RoomService", "Stars", "TotalRoom" },
+                columns: new[] { "HotelId", "AllInclusive", "CityId", "CompanyId", "ImageUrl", "IsHome", "Name", "RoomService", "Stars", "TotalRoom" },
                 values: new object[,]
                 {
-                    { 1, true, 1, 1, "Swiss Hotel", true, 5, 200 },
-                    { 2, true, 1, 2, "Hilton Hotel", true, 5, 200 },
-                    { 3, true, 2, 3, "Garden Hotel", true, 5, 200 },
-                    { 4, true, 2, 4, "Plaza Hotel", true, 5, 200 }
+                    { 1, true, 1, 1, "hotel-1.jpg", true, "Swiss Hotel", true, 5, 200 },
+                    { 2, true, 1, 2, "hotel-2.jpg", true, "Hilton Hotel", true, 5, 200 },
+                    { 3, true, 2, 3, "hotel-3.jpg", true, "Garden Hotel", true, 5, 200 },
+                    { 4, true, 2, 4, "hotel-4.jpg", false, "Plaza Hotel", true, 5, 200 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Rooms",
-                columns: new[] { "RoomId", "BedsCount", "Discount", "EntryDate", "GuestCapacity", "HotelId", "InnerRoomCount", "IsEmpty", "Name", "Price", "ReleaseDate", "RoomNumber", "SquareMeters", "Tv" },
+                columns: new[] { "RoomId", "BedsCount", "Discount", "EntryDate", "GuestCapacity", "HotelId", "ImageUrl", "InnerRoomCount", "IsEmpty", "Name", "Price", "ReleaseDate", "RoomNumber", "SquareMeters", "Tv" },
                 values: new object[,]
                 {
-                    { 1, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 1, 3, true, "King", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 150, true },
-                    { 2, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 1, 3, true, "Honeymoon", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 150, true },
-                    { 3, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 2, 3, true, "Honeymoon", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 150, true },
-                    { 4, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 2, 3, true, "Standart", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 150, true }
+                    { 1, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 1, "room-1.jpg", 3, true, "King", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 150, true },
+                    { 2, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 1, "room-2.jpg", 3, true, "Honeymoon", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 150, true },
+                    { 3, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 2, "room-3.jpg", 3, true, "Honeymoon", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 150, true },
+                    { 4, 4, 0.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 2, "room-4.jpg", 3, true, "Standart", 10000.0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 150, true }
                 });
 
             migrationBuilder.CreateIndex(

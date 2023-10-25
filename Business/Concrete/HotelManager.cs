@@ -22,11 +22,11 @@ namespace Business.Abstract
                 RoomService = i.RoomService,
                 AllInclusive = i.AllInclusive,
                 ImageUrl = i.ImageUrl,
-                CityName = i.City!.Name,
-                CompanyName = i.Company!.Name,
-                City = new City {
-                    Name = i.City.Name
-                }
+                // CityName = i.City!.Name,
+                // CompanyName = i.Company!.Name,
+                // City = new City {
+                //     Name = i.City.Name
+                // }
             });
 
             return hotelDtoList.ToList();

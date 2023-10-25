@@ -8,6 +8,7 @@ namespace Entity
         public int TotalRoom { get; set; }
         public bool RoomService { get; set; }
         public bool AllInclusive { get; set; }
+        public bool IsHome { get; set; }
         public string? ImageUrl { get; set; }
 
         public int CityId { get; set; }

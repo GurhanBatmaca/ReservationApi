@@ -123,6 +123,9 @@ namespace Data.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsHome")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -151,6 +154,7 @@ namespace Data.Migrations
                             CityId = 1,
                             CompanyId = 1,
                             ImageUrl = "hotel-1.jpg",
+                            IsHome = true,
                             Name = "Swiss Hotel",
                             RoomService = true,
                             Stars = 5,
@@ -163,6 +167,7 @@ namespace Data.Migrations
                             CityId = 1,
                             CompanyId = 2,
                             ImageUrl = "hotel-2.jpg",
+                            IsHome = true,
                             Name = "Hilton Hotel",
                             RoomService = true,
                             Stars = 5,
@@ -175,6 +180,7 @@ namespace Data.Migrations
                             CityId = 2,
                             CompanyId = 3,
                             ImageUrl = "hotel-3.jpg",
+                            IsHome = true,
                             Name = "Garden Hotel",
                             RoomService = true,
                             Stars = 5,
@@ -187,6 +193,7 @@ namespace Data.Migrations
                             CityId = 2,
                             CompanyId = 4,
                             ImageUrl = "hotel-4.jpg",
+                            IsHome = false,
                             Name = "Plaza Hotel",
                             RoomService = true,
                             Stars = 5,

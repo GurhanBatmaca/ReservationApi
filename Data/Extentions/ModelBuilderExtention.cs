@@ -124,7 +124,8 @@ namespace Data.Extentions
                     AllInclusive=true,
                     CityId=1,
                     CompanyId=1,
-                    ImageUrl = "hotel-1.jpg"
+                    ImageUrl = "hotel-1.jpg",
+                    IsHome=true
                 },
                 new Hotel {
                     HotelId=2,
@@ -135,7 +136,8 @@ namespace Data.Extentions
                     AllInclusive=true,
                     CityId=1,
                     CompanyId=2,
-                    ImageUrl = "hotel-2.jpg"
+                    ImageUrl = "hotel-2.jpg",
+                    IsHome=true
                 },
                 new Hotel {
                     HotelId=3,
@@ -146,7 +148,8 @@ namespace Data.Extentions
                     AllInclusive=true,
                     CityId=2,
                     CompanyId=3,
-                    ImageUrl = "hotel-3.jpg"
+                    ImageUrl = "hotel-3.jpg",
+                    IsHome=true
                 },
                 new Hotel {
                     HotelId=4,
