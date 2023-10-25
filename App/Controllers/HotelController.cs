@@ -19,9 +19,7 @@ namespace App.Controllers
 
         public async Task<IActionResult> GetHotel(int page=1)
         {
-            var pageSize = 3;
-
-            var hotels = await _hotelService.GetHomePageHotels(page,pageSize);
+            var hotels = await _hotelService.GetHomePageHotels(page);
 
             return Ok(hotels);
         }

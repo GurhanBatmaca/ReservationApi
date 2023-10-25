@@ -17,6 +17,7 @@ namespace Data.Concrete.EfCore
             var hotels = Context!.Hotels
                                 .Include(i=>i.City)
                                 .Include(i=>i.Company)
+                                .Where(i=>i.IsHome)
                                 .AsQueryable();
 
             return await hotels.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
