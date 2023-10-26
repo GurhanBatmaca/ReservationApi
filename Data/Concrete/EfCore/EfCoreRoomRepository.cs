@@ -17,8 +17,10 @@ namespace Data.Concrete.EfCore
             var rooms =  Context!.Rooms
                                     .Include(i=>i.Hotel)
                                     .ThenInclude(i=>i!.City)
-                                    .Where(i=>i.Name == city && i.IsEmpty)
+                                    .Where(i => i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()))
                                     .AsQueryable();
+
+            // rooms = rooms.Where(i => i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()));
 
             return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
         }
