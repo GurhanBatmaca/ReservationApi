@@ -17,7 +17,7 @@ namespace Business.Abstract
         {
             var pageSize = 2;
             var rooms = await _unitOfWork.Rooms.GetRoomsByCity(city,page,pageSize);
-            var roomsCount = await _unitOfWork.Rooms.GetRoomsCountByCity(city,page,pageSize);
+            var roomsCount = await _unitOfWork.Rooms.GetRoomsCountByCity(city);
 
             var roomDTOList = rooms.Select(i => new RoomDTO {
                 RoomId = i.RoomId,
@@ -52,7 +52,7 @@ namespace Business.Abstract
             var roomListDTO = new RoomListDTO
             {
                 Rooms = roomDTOList.ToList(),
-                Pages = roomsCount
+                Pages = PageCountCeiling.Ceiling(roomsCount,pageSize)
             };
 
             return roomListDTO; 

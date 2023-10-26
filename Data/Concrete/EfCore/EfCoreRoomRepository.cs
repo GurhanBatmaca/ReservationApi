@@ -20,17 +20,16 @@ namespace Data.Concrete.EfCore
                                     .Where(i => i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()))
                                     .AsQueryable();
 
-            // rooms = rooms.Where(i => i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()));
 
             return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
         }
 
-        public async Task<int> GetRoomsCountByCity(string city, int page, int pageSize)
+        public async Task<int> GetRoomsCountByCity(string city)
         {
             var rooms =  Context!.Rooms
                                     .Include(i=>i.Hotel)
                                     .ThenInclude(i=>i!.City)
-                                    .Where(i=>i.Name == city && i.IsEmpty)
+                                    .Where(i => i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()))
                                     .AsQueryable();
 
             return await rooms.CountAsync();
