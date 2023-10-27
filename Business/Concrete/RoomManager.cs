@@ -30,6 +30,20 @@ namespace Business.Abstract
 
         }
 
+        public async Task<RoomListDTO> GetRoomsByFilter(string? city, int minPrice, int maxPrice, int page)
+        {
+            var pageSize = 2;
+            var rooms = await _unitOfWork.Rooms.GetRoomsByFilter(city,minPrice,maxPrice,page,pageSize);
+            var roomsCount = await _unitOfWork.Rooms.GetRoomsCountByFilter(city,minPrice,maxPrice);
+
+            var roomListDTO = new RoomListDTO
+            {
+                Rooms = RoomToRoomDTO.RoomListToRoomDTOList(rooms),
+                Pages = PageCountCeiling.Ceiling(roomsCount,pageSize)
+            };
+
+            return roomListDTO; 
+        }
 
     }
 }

@@ -17,7 +17,7 @@ namespace App.Controllers
         [HttpGet]
         [Route("rooms/{city}")]
 
-        public async Task<IActionResult> GetRoomByCity(string city,int page=1)
+        public async Task<IActionResult> GetRoomsByCity(string city,int page=1)
         {
             if(string.IsNullOrEmpty(city))
             {
@@ -29,6 +29,17 @@ namespace App.Controllers
             {
                 return BadRequest();
             }
+
+            return Ok(rooms);
+        }
+
+        [HttpGet]
+        [Route("rooms/filter")]
+
+        public async Task<IActionResult> GetRoomsByFilter(string? city,int minPrice,int maxPrice,int page=1)
+        {   
+
+            var rooms = await _roomService.GetRoomsByFilter(city,minPrice,maxPrice,page);        
 
             return Ok(rooms);
         }
