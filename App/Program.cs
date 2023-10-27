@@ -17,6 +17,19 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddScoped<IHotelService,HotelManager>();
 builder.Services.AddScoped<IRoomService,RoomManager>();
 
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy(
+        name: "_myAllowOrigins",
+        builder => {
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        }
+    );
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -32,6 +45,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("_myAllowOrigins");
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
