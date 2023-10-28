@@ -52,6 +52,8 @@ namespace Data.Concrete.EfCore
                 rooms = rooms.Where(i =>i.Price <= maxPrice);
             }
 
+            // rooms = rooms.Where(i=> i.ReleaseDate < DateTime.Now);
+
 
             return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
         }
@@ -68,7 +70,7 @@ namespace Data.Concrete.EfCore
             {
                 rooms = rooms.Where(i =>i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()));
             }
-            if(maxPrice >= 0)
+            if(maxPrice > 0)
             {
                 rooms = rooms.Where(i =>i.Price <= maxPrice);
             }

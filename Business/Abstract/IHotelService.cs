@@ -1,5 +1,5 @@
 using Entity;
-using Shared.DTO.Models;
+using Shared.DTO.DTOModels;
 
 namespace Business.Abstract
 {

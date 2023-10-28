@@ -1,6 +1,6 @@
 using Entity;
 
-namespace Shared.DTO.Models
+namespace Shared.DTO.DTOModels
 {
     public class CompanyDTO
     {

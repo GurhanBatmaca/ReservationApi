@@ -1,7 +1,7 @@
 using Data;
 using Entity;
 using Shared.DTO.EntityToDTO;
-using Shared.DTO.Models;
+using Shared.DTO.DTOModels;
 using Shared.Helpers;
 
 namespace Business.Abstract

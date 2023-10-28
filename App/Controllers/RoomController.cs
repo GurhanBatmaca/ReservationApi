@@ -44,5 +44,16 @@ namespace App.Controllers
             return Ok(rooms);
         }
 
+        [HttpGet]
+        [Route("rooms/model")]
+
+        public async Task<IActionResult> GetRoomsByModel(string? city,int minPrice,int maxPrice,int page=1)
+        {   
+
+            var rooms = await _roomService.GetRoomsByFilter(city,minPrice,maxPrice,page);        
+
+            return Ok(rooms);
+        }
+
     }
 }

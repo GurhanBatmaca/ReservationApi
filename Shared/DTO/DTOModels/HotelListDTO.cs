@@ -1,4 +1,4 @@
-namespace Shared.DTO.Models
+namespace Shared.DTO.DTOModels
 {
     public class HotelListDTO
     {
