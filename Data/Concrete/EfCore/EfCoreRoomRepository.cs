@@ -1,6 +1,7 @@
 using Data.Abstract;
 using Entity;
 using Microsoft.EntityFrameworkCore;
+using Shared.Models;
 
 namespace Data.Concrete.EfCore
 {
@@ -45,15 +46,12 @@ namespace Data.Concrete.EfCore
 
             if(!string.IsNullOrEmpty(city))
             {
-                rooms = rooms.Where(i =>i.Hotel!.City!.Name!.ToLower().Contains(city.ToLower()));
+                rooms = rooms.Where(i =>i.Hotel!.City!.Name!.ToLower().Contains(city.Trim().ToLower()));
             }
             if(maxPrice > 0)
             {
                 rooms = rooms.Where(i =>i.Price <= maxPrice);
             }
-
-            // rooms = rooms.Where(i=> i.ReleaseDate < DateTime.Now);
-
 
             return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
         }
@@ -78,5 +76,38 @@ namespace Data.Concrete.EfCore
             return await rooms.CountAsync();
         }
 
+        public async Task<List<Room>> GetRoomsByFilter(RoomFilterModel model, int page, int pageSize)
+        {
+            var rooms =  Context!.Rooms
+                                    .Include(i=>i.Hotel)
+                                    .ThenInclude(i=>i!.City)
+                                    .Where(i => i.IsEmpty && i.Price >= model.MinPrice)
+                                    .AsQueryable();
+
+            if(!string.IsNullOrEmpty(model.City))
+            {
+                rooms = rooms.Where(i =>i.Hotel!.City!.Name!.ToLower().Contains(model.City.Trim().ToLower()));
+            }
+            if(model.MaxPrice > 0)
+            {
+                rooms = rooms.Where(i =>i.Price <= model.MaxPrice);
+            }
+
+            DateTime releaseDate;
+
+            if(DateTime.TryParse(model.EntryDate, out DateTime entryDate))
+            {
+               
+
+            }
+            else
+            {
+               
+            }
+              
+            return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
+
+        }
+    
     }
 }

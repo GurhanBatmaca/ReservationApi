@@ -1,5 +1,7 @@
+using Azure;
 using Business.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using Shared.Models;
 
 namespace App.Controllers
 {
@@ -44,15 +46,33 @@ namespace App.Controllers
             return Ok(rooms);
         }
 
-        [HttpGet]
-        [Route("rooms/model")]
+        [HttpPost]
+        [Route("rooms/search")]
 
-        public async Task<IActionResult> GetRoomsByModel(string? city,int minPrice,int maxPrice,int page=1)
-        {   
+        // public async Task<IActionResult> GetRoomsByModel(string? city,int minPrice,int maxPrice,DateTime inTime,DateTime outTime,int page=1)
+        // {   
 
-            var rooms = await _roomService.GetRoomsByFilter(city,minPrice,maxPrice,page);        
+        public async Task<IActionResult> GetRoomsByModel([FromBody] RoomFilterModel model,int page=1)
+        { 
 
-            return Ok(rooms);
+            DateTime temp;
+
+            if(DateTime.TryParse(model.EntryDate, out temp))
+            {
+                var rooms = await _roomService.GetRoomsByFilter(model.City,(int)model.MinPrice!,(int)model.MaxPrice!,page);        
+
+                return Ok(rooms);
+
+            }
+            else
+            {
+                var rooms = await _roomService.GetRoomsByFilter(model.City,(int)model.MinPrice,(int)model.MaxPrice,page);        
+
+                return Ok(rooms);
+            }
+              
+
+            
         }
 
     }
