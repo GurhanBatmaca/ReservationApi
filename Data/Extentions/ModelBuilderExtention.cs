@@ -61,7 +61,9 @@ namespace Data.Extentions
                     InnerRoomCount=3,
                     Tv=true,
                     HotelId=1,
-                    ImageUrl = "room-1.jpg"
+                    ImageUrl = "room-1.jpg",
+                    EntryDate = DateTime.Now.AddDays(-3),
+                    ReleaseDate = DateTime.Now.AddDays(-1),
                 },
                 new Room 
                 {
