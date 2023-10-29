@@ -48,7 +48,7 @@ namespace Business.Abstract
 
         public async Task<RoomListDTO> GetRoomsByModel(RoomFilterModel model, int page)
         {
-            var pageSize = 2;
+            var pageSize = 4;
             var rooms = await _unitOfWork.Rooms.GetRoomsByModel(model,page,pageSize);
 
             var roomListDTO = new RoomListDTO

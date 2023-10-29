@@ -96,7 +96,7 @@ namespace Data.Concrete.EfCore
             if(DateTime.TryParse(model.EntryDate, out DateTime entryDate) && DateTime.TryParse(model.ReleaseDate, out DateTime releaseDate))
             {
                
-                rooms = rooms.Where(i => (i.ReleaseDate != releaseDate) && (i.EntryDate != entryDate));
+                rooms = rooms.Where(i => i.EntryDate.Date != entryDate.Date && i.ReleaseDate.Date != releaseDate.Date );
             }
               
             return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();
