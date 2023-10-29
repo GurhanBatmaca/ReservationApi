@@ -76,7 +76,7 @@ namespace Data.Concrete.EfCore
             return await rooms.CountAsync();
         }
 
-        public async Task<List<Room>> GetRoomsByFilter(RoomFilterModel model, int page, int pageSize)
+        public async Task<List<Room>> GetRoomsByModel(RoomFilterModel model, int page, int pageSize)
         {
             var rooms =  Context!.Rooms
                                     .Include(i=>i.Hotel)
@@ -93,16 +93,10 @@ namespace Data.Concrete.EfCore
                 rooms = rooms.Where(i =>i.Price <= model.MaxPrice);
             }
 
-            DateTime releaseDate;
-
-            if(DateTime.TryParse(model.EntryDate, out DateTime entryDate))
+            if(DateTime.TryParse(model.EntryDate, out DateTime entryDate) && DateTime.TryParse(model.ReleaseDate, out DateTime releaseDate))
             {
                
-
-            }
-            else
-            {
-               
+                rooms = rooms.Where(i => (i.ReleaseDate != releaseDate) && (i.EntryDate != entryDate));
             }
               
             return await rooms.Skip((page-1)*pageSize).Take(pageSize).ToListAsync();

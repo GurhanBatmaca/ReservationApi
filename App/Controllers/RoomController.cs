@@ -55,21 +55,9 @@ namespace App.Controllers
         public async Task<IActionResult> GetRoomsByModel([FromBody] RoomFilterModel model,int page=1)
         { 
 
-            DateTime temp;
+            var rooms = await _roomService.GetRoomsByModel(model,page);  
 
-            if(DateTime.TryParse(model.EntryDate, out temp))
-            {
-                var rooms = await _roomService.GetRoomsByFilter(model.City,(int)model.MinPrice!,(int)model.MaxPrice!,page);        
-
-                return Ok(rooms);
-
-            }
-            else
-            {
-                var rooms = await _roomService.GetRoomsByFilter(model.City,(int)model.MinPrice,(int)model.MaxPrice,page);        
-
-                return Ok(rooms);
-            }
+            return Ok(rooms);
               
 
             

@@ -3,6 +3,7 @@ using Entity;
 using Shared.DTO.EntityToDTO;
 using Shared.DTO.DTOModels;
 using Shared.Helpers;
+using Shared.Models;
 
 namespace Business.Abstract
 {
@@ -45,5 +46,17 @@ namespace Business.Abstract
             return roomListDTO; 
         }
 
+        public async Task<RoomListDTO> GetRoomsByModel(RoomFilterModel model, int page)
+        {
+            var pageSize = 2;
+            var rooms = await _unitOfWork.Rooms.GetRoomsByModel(model,page,pageSize);
+
+            var roomListDTO = new RoomListDTO
+            {
+                Rooms = RoomToRoomDTO.RoomListToRoomDTOList(rooms)
+            };
+
+            return roomListDTO; 
+        }
     }
 }
