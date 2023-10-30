@@ -15,27 +15,11 @@ namespace Business.Abstract
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<RoomListDTO> GetRoomsByCity(string city, int page)
+        public async Task<RoomListDTO> GetAllRooms(int page)
         {
             var pageSize = 2;
-            var rooms = await _unitOfWork.Rooms.GetRoomsByCity(city,page,pageSize);
-            var roomsCount = await _unitOfWork.Rooms.GetRoomsCountByCity(city);
-
-            var roomListDTO = new RoomListDTO
-            {
-                Rooms = RoomToRoomDTO.RoomListToRoomDTOList(rooms),
-                Pages = PageCountCeiling.Ceiling(roomsCount,pageSize)
-            };
-
-            return roomListDTO; 
-
-        }
-
-        public async Task<RoomListDTO> GetRoomsByFilter(string? city, int minPrice, int maxPrice, int page)
-        {
-            var pageSize = 2;
-            var rooms = await _unitOfWork.Rooms.GetRoomsByFilter(city,minPrice,maxPrice,page,pageSize);
-            var roomsCount = await _unitOfWork.Rooms.GetRoomsCountByFilter(city,minPrice,maxPrice);
+            var rooms = await _unitOfWork.Rooms.GetAllRooms(page,pageSize);
+            var roomsCount = await _unitOfWork.Rooms.GetAllRoomsCount();
 
             var roomListDTO = new RoomListDTO
             {
@@ -46,14 +30,16 @@ namespace Business.Abstract
             return roomListDTO; 
         }
 
-        public async Task<RoomListDTO> GetRoomsByModel(RoomFilterModel model, int page)
+        public async Task<RoomListDTO> GetRoomsBySearch(RoomFilterModel model, int page)
         {
             var pageSize = 4;
-            var rooms = await _unitOfWork.Rooms.GetRoomsByModel(model,page,pageSize);
+            var rooms = await _unitOfWork.Rooms.GetRoomsBySearch(model,page,pageSize);
+            var roomsCount = await _unitOfWork.Rooms.GetRoomsCountBySearch(model);
 
             var roomListDTO = new RoomListDTO
             {
-                Rooms = RoomToRoomDTO.RoomListToRoomDTOList(rooms)
+                Rooms = RoomToRoomDTO.RoomListToRoomDTOList(rooms),
+                Pages = PageCountCeiling.Ceiling(roomsCount,pageSize)
             };
 
             return roomListDTO; 

@@ -6,8 +6,7 @@ namespace Business.Abstract
 {
     public interface IRoomService
     {
-        Task<RoomListDTO> GetRoomsByCity(string city, int page);
-        Task<RoomListDTO> GetRoomsByFilter(string? city,int minPrice,int maxPrice,int page);
-        Task<RoomListDTO> GetRoomsByModel(RoomFilterModel model,int page);
+        Task<RoomListDTO> GetAllRooms(int page);
+        Task<RoomListDTO> GetRoomsBySearch(RoomFilterModel model,int page);
     }
 }

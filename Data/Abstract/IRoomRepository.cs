@@ -5,10 +5,9 @@ namespace Data.Abstract
 {
     public interface IRoomRepository : IRepository<Room>
     {
-        Task<List<Room>> GetRoomsByCity(string city,int page,int pageSize);
-        Task<int> GetRoomsCountByCity(string city);
-        Task<List<Room>> GetRoomsByFilter(string? city,int minPrice,int maxPrice,int page,int pageSize);
-        Task<int> GetRoomsCountByFilter(string? city,int minPrice,int maxPrice);
-        Task<List<Room>> GetRoomsByModel(RoomFilterModel model,int page,int pageSize);
+        Task<List<Room>> GetAllRooms(int page,int pageSize);
+        Task<int> GetAllRoomsCount();
+        Task<List<Room>> GetRoomsBySearch(RoomFilterModel model,int page,int pageSize);
+        Task<int> GetRoomsCountBySearch(RoomFilterModel model);
     }
 }
