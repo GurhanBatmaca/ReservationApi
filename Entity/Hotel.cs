@@ -4,6 +4,7 @@ namespace Entity
     {
         public int HotelId { get; set; }
         public string? Name { get; set; }
+        public string? Url { get; set; }
         public int Stars { get; set; }
         public int TotalRoom { get; set; }
         public bool RoomService { get; set; }
