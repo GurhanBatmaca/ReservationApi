@@ -5,6 +5,6 @@ namespace Business.Abstract
 {
     public interface ICityService
     {
-        
+        Task<CityListDTO> GetAllAync();
     }
 }

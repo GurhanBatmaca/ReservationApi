@@ -6,7 +6,7 @@ namespace Shared.DTO.EntityToDTO
 {
     public static class CityToCityDTO
     {
-        public static List<CityDTO> HotelListToHotelDTOList(List<City> cities)
+        public static List<CityDTO> CityListToCityDTOList(List<City> cities)
         {
 
            var cityDtoList = cities.Select(i=> new CityDTO

@@ -14,5 +14,17 @@ namespace Business.Abstract
             _unitOfWork = unitOfWork;
         }
 
+        public async Task<CityListDTO> GetAllAync()
+        {
+
+            var cities = await _unitOfWork.Citys.GetAllAsync();
+
+            var cityListDTO = new CityListDTO 
+            {
+                Cities = CityToCityDTO.CityListToCityDTOList(cities)
+            };
+
+            return cityListDTO;
+        }
     }
 }

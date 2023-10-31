@@ -16,6 +16,7 @@ builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 
 builder.Services.AddScoped<IHotelService,HotelManager>();
 builder.Services.AddScoped<IRoomService,RoomManager>();
+builder.Services.AddScoped<ICityService,CityManager>();
 
 builder.Services.AddCors(options => 
 {
