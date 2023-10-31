@@ -17,6 +17,7 @@ namespace Shared.DTO.EntityToDTO
                 RoomService = i.RoomService,
                 AllInclusive = i.AllInclusive,
                 ImageUrl = i.ImageUrl,
+                Url = i.Url,
                 City = new CityDTO {
                     CityId = i.City!.CityId,
                     Name = i.City!.Name

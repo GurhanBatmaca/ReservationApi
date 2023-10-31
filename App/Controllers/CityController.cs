@@ -20,6 +20,11 @@ namespace App.Controllers
         {
             var cities = await _cityService.GetAllAync();
 
+            if(cities == null)
+            {
+                return BadRequest();
+            }
+
             return Ok(cities);
         }
     }

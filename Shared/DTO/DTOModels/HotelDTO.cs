@@ -11,6 +11,7 @@ namespace Shared.DTO.DTOModels
         public bool RoomService { get; set; }
         public bool AllInclusive { get; set; }
         public string? ImageUrl { get; set; }
+        public string? Url { get; set; }
         public CityDTO? City { get; set; }
         public CompanyDTO? Company { get; set; }
     }
