@@ -52,7 +52,7 @@ namespace Data.Extentions
                     RoomId=1,
                     RoomNumber=1,
                     Name="King",
-                    Price= 10000,
+                    Price= 20000,
                     Discount=0,
                     SquareMeters=150,
                     BedsCount=4,
@@ -70,7 +70,7 @@ namespace Data.Extentions
                     RoomId=2,
                     RoomNumber=2,
                     Name="Honeymoon",
-                    Price= 10000,
+                    Price= 15000,
                     Discount=0,
                     SquareMeters=150,
                     BedsCount=4,
@@ -86,7 +86,7 @@ namespace Data.Extentions
                     RoomId=3,
                     RoomNumber=1,
                     Name="Honeymoon",
-                    Price= 10000,
+                    Price= 15000,
                     Discount=0,
                     SquareMeters=150,
                     BedsCount=4,
@@ -127,7 +127,8 @@ namespace Data.Extentions
                     CityId=1,
                     CompanyId=1,
                     ImageUrl = "hotel-1.jpg",
-                    IsHome=true
+                    IsHome=true,
+                    Url = "swiss-hotel"
                 },
                 new Hotel {
                     HotelId=2,
@@ -139,7 +140,8 @@ namespace Data.Extentions
                     CityId=1,
                     CompanyId=2,
                     ImageUrl = "hotel-2.jpg",
-                    IsHome=true
+                    IsHome=true,
+                    Url = "hilton-hotel"
                 },
                 new Hotel {
                     HotelId=3,
@@ -151,7 +153,8 @@ namespace Data.Extentions
                     CityId=2,
                     CompanyId=3,
                     ImageUrl = "hotel-3.jpg",
-                    IsHome=true
+                    IsHome=true,
+                    Url = "garden-hotel"
                 },
                 new Hotel {
                     HotelId=4,
@@ -162,25 +165,26 @@ namespace Data.Extentions
                     AllInclusive=true,
                     CityId=2,
                     CompanyId=4,
-                    ImageUrl = "hotel-4.jpg"
+                    ImageUrl = "hotel-4.jpg",
+                    Url = "plaza-hotel"
                 }
             );
 
             modelBuilder.Entity<Company>().HasData
             (
-                new Company { CompanyId =1,Name="Company 1"},
-                new Company { CompanyId =2,Name="Company 2"},
-                new Company { CompanyId =3,Name="Company 3"},
-                new Company { CompanyId =4,Name="Company 4"}
+                new Company { CompanyId =1,Name="Company 1",Url="company-1"},
+                new Company { CompanyId =2,Name="Company 2",Url="company-2"},
+                new Company { CompanyId =3,Name="Company 3",Url="company-3"},
+                new Company { CompanyId =4,Name="Company 4",Url="company-4"}
             );
 
             modelBuilder.Entity<City>().HasData
             (
-                new City {CityId=1,Name="İstanbul"},
-                new City {CityId=2,Name="İzmir"},
-                new City {CityId=3,Name="Ankara"},
-                new City {CityId=4,Name="Antalya"},
-                new City {CityId=5,Name="Muğla"}
+                new City {CityId=1,Name="İstanbul",Url="istanbul"},
+                new City {CityId=2,Name="İzmir",Url="izmir"},
+                new City {CityId=3,Name="Ankara",Url="ankara"},
+                new City {CityId=4,Name="Antalya",Url="antalya"},
+                new City {CityId=5,Name="Muğla",Url="mugla"}
             );
         }
     }
