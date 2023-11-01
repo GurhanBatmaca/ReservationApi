@@ -19,7 +19,7 @@ namespace App.Controllers
         [HttpGet]
         [Route("rooms")]
 
-        public async Task<IActionResult> GetRooms(int page=1)
+        public async Task<IActionResult> Rooms(int page=1)
         {       
 
             var rooms = await _roomService.GetAllRooms(page);      
@@ -35,7 +35,7 @@ namespace App.Controllers
         [HttpPost]
         [Route("rooms/search")]
 
-        public async Task<IActionResult> GetRoomsBySearch([FromBody] RoomFilterModel model,int page=1)
+        public async Task<IActionResult> RoomsBySearch([FromBody] RoomFilterModel model,int page=1)
         { 
 
             var rooms = await _roomService.GetRoomsBySearch(model,page);  

@@ -15,9 +15,19 @@ namespace App.Controllers
         }
 
         [HttpGet]
+        [Route("hotels")]
+
+        public async Task<IActionResult> Hotels(int page=1)
+        {
+            
+
+            return Ok();
+        }
+
+        [HttpGet]
         [Route("homepagehotels")]
 
-        public async Task<IActionResult> GetHomePageHotel(int page=1)
+        public async Task<IActionResult> HomePageHotels(int page=1)
         {
             var hotels = await _hotelService.GetHomePageHotels(page);
             
