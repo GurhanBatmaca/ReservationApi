@@ -19,9 +19,15 @@ namespace App.Controllers
 
         public async Task<IActionResult> Hotels(int page=1)
         {
-            
 
-            return Ok();
+            var hotels = await _hotelService.GetAllHotels(page);
+            
+            if(hotels == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(hotels);
         }
 
         [HttpGet]

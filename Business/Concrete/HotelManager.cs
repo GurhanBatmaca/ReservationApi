@@ -13,6 +13,24 @@ namespace Business.Abstract
         {
             _unitOfWork = unitOfWork;
         }
+
+        public async Task<HotelListDTO> GetAllHotels(int page)
+        {
+            var pageSize = 2;
+
+            var hotels = await _unitOfWork.Hotels.GetAllHotels(page,pageSize);
+            var hotelsCount = await _unitOfWork.Hotels.GetAllHotelsCount();
+
+            var hotelListDTO = new HotelListDTO 
+            {
+                Hotels = HotelToHotelDTO.HotelListToHotelDTOList(hotels),
+                Pages = PageCountCeiling.Ceiling(hotelsCount,pageSize)
+            };
+
+            return hotelListDTO;
+        }
+
+
         public async Task<HotelListDTO> GetHomePageHotels(int page)
         {
             var pageSize = 2;
