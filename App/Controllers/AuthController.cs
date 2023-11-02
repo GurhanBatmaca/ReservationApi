@@ -21,12 +21,37 @@ namespace App.Controllers
 
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             if(await _userService.CreateAsync(model))
             {
                 return Ok(new { message = _userService.Message });
             }
 
             return BadRequest(new { error = _userService.Message });
+        }
+
+        [HttpPost]
+        [Route("auth/login")]
+
+        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        {
+
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if(await _signService.LoginAsync(model))
+            {
+                return Ok();
+            }
+            
+
+            return BadRequest(new { error = _signService.Message });
         }
     }
 }
