@@ -1,4 +1,5 @@
 using System.Text;
+using App.EmailServices.Abstract;
 using App.Identity;
 using App.Identity.IdentityServices.Abstract;
 using App.Identity.IdentityServices.Concrete;
@@ -83,6 +84,16 @@ builder.Services.AddAuthentication(auth => {
         ValidateLifetime = true
     };
 });
+
+builder.Services.AddScoped<IEmailSender,SmtpEmailSender>( i => 
+    new SmtpEmailSender(
+        builder.Configuration["EmailSender:Host"]!,
+        builder.Configuration.GetValue<int>("EmailSender:Port"),
+        builder.Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+        builder.Configuration["EmailSender:UserName"]!,
+        builder.Configuration["EmailSender:Password"]!
+    )
+);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
