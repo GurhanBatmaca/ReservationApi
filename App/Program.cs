@@ -1,5 +1,7 @@
 using System.Text;
 using App.Identity;
+using App.Identity.IdentityServices.Abstract;
+using App.Identity.IdentityServices.Concrete;
 using Business.Abstract;
 using Data;
 using Data.Concrete;
@@ -48,6 +50,9 @@ builder.Services.AddScoped<IHotelService,HotelManager>();
 builder.Services.AddScoped<IRoomService,RoomManager>();
 builder.Services.AddScoped<ICityService,CityManager>();
 builder.Services.AddScoped<ICompanyService,CompanyManager>();
+
+builder.Services.AddScoped<IUserService,UserService>();
+builder.Services.AddScoped<ISignService,SignService>();
 
 builder.Services.AddCors(options => 
 {
