@@ -1,10 +1,13 @@
+using System.Text;
 using App.Identity;
 using Business.Abstract;
 using Data;
 using Data.Concrete;
 using Data.Concrete.EfCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -57,6 +60,23 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         }
     );
+});
+
+builder.Services.AddAuthentication(auth => {
+    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options => {
+    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["AuthSettings:Audince"],
+        ValidIssuer = builder.Configuration["AuthSettings:Issuer"],
+        RequireExpirationTime = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["AuthSettings:Key"]!)),
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true
+    };
 });
 
 builder.Services.AddControllers();
