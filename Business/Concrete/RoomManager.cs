@@ -4,6 +4,7 @@ using Shared.DTO.EntityToDTO;
 using Shared.DTO.DTOModels;
 using Shared.Helpers;
 using Shared.Models;
+using Shared.DTO.DTOToEntity;
 
 namespace Business.Abstract
 {
@@ -14,6 +15,42 @@ namespace Business.Abstract
         {
             _unitOfWork = unitOfWork;
         }
+
+        public string? Message { get; set; }
+
+
+        public async Task<bool> CreateAsync(RoomModel model)
+        {
+            if(string.IsNullOrEmpty(model.Name))
+            {
+                Message += "Name is required.";
+                return false;
+            }
+            if(model.Price <= 0)
+            {
+                Message += "Price most be positive number.";
+                return false;
+            }            
+            if(model.Discount > 100)
+            {
+                Message += "Not valid number.";
+                return false;
+            }
+            var hotel = await _unitOfWork.Hotels.GetByIdAsync(model.HotelId);
+            if(hotel == null)
+            {
+                Message += "Not valid id.";
+                return false;
+            }
+
+            var entity = RoomDTOToRoom.RoomDTOToRoomEntity(model);
+            await _unitOfWork.Rooms.CreateAsync(entity);
+            
+            Message += "Room is created.";
+
+            return true;
+        }
+
 
         public async Task<RoomListDTO> GetAllRooms(int page)
         {

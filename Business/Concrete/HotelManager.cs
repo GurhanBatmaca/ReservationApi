@@ -14,6 +14,9 @@ namespace Business.Abstract
             _unitOfWork = unitOfWork;
         }
 
+        public string? Message { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+
         public async Task<HotelListDTO> GetAllHotels(int page)
         {
             var pageSize = 2;
