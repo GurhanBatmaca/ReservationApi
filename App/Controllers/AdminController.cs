@@ -1,8 +1,6 @@
 using Business.Abstract;
-using Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Shared.DTO.DTOToEntity;
 using Shared.Models;
 
 namespace App.Controllers
