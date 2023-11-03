@@ -6,5 +6,6 @@ namespace App.Identity.IdentityServices.Abstract
     {
         Task<bool> LoginAsync(LoginModel model);
         public string? Message { get; set; }
+        public DateTime? ExpireDate { get; set ; }
     }
 }

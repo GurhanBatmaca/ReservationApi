@@ -1,5 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using App.Identity.IdentityServices.Abstract;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Shared.Models;
 
 namespace App.Identity.IdentityServices.Concrete
@@ -8,12 +12,15 @@ namespace App.Identity.IdentityServices.Concrete
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        public SignService(SignInManager<ApplicationUser> signInManager,UserManager<ApplicationUser> userManager)
+        private readonly IConfiguration _configuration;
+        public SignService(SignInManager<ApplicationUser> signInManager,UserManager<ApplicationUser> userManager,IConfiguration configuration)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _configuration = configuration;
         }
         public string? Message { get; set ; }
+        public DateTime? ExpireDate { get; set ; }
 
         public async Task<bool> LoginAsync(LoginModel model)
         {
@@ -40,6 +47,32 @@ namespace App.Identity.IdentityServices.Concrete
                 return false;
             }
 
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var claims = new List<Claim>()
+            {
+                new Claim("Email",model.Password!),
+                new Claim(ClaimTypes.NameIdentifier,user.Id)             
+            };
+
+            foreach (var role in roles)
+            {
+                claims.Add( new Claim(ClaimTypes.Role,role) );
+            }
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration!["AuthSettings:Key"]!));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration!["AuthSettings:Issuer"],
+                audience: _configuration!["AuthSettings:Audince"],
+                claims: claims,
+                expires: DateTime.Now.AddDays(30),
+                signingCredentials: new SigningCredentials(key,SecurityAlgorithms.HmacSha256)
+            );
+
+            var stringToken = new JwtSecurityTokenHandler().WriteToken(token);
+            Message += stringToken;
+            ExpireDate = token.ValidTo;
 
             return true;
         }

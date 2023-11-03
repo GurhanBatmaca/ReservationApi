@@ -1,3 +1,4 @@
+using System.Security.Principal;
 using App.Identity.IdentityServices.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Shared.Models;
@@ -47,7 +48,7 @@ namespace App.Controllers
 
             if(await _signService.LoginAsync(model))
             {
-                return Ok();
+                return Ok(new { token = _signService.Message, expireDate = _signService.ExpireDate });
             }
             
 
