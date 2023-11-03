@@ -10,7 +10,7 @@ namespace App.Controllers
 
     [ApiController]
     [Route("api/admin")]
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController: ControllerBase
     {
 
@@ -31,10 +31,10 @@ namespace App.Controllers
 
             if(await _roomService.CreateAsync(model))
             {
-                return Ok(_roomService.Message);
+                return Ok(new {message = _roomService.Message} );
             }
 
-            return BadRequest(_roomService.Message);
+            return BadRequest(new {error = _roomService.Message} );
             
         }
 
