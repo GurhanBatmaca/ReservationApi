@@ -86,5 +86,15 @@ namespace Data.Concrete.EfCore
             return await rooms.CountAsync();
         }
 
+        public async Task<Room?> GetRoomDetails(int id)
+        {
+            var room = Context!.Rooms
+                                    .Include(i=>i.Hotel)
+                                    .ThenInclude(i=>i!.City)
+                                    .Where(i=>i.RoomId == id)
+                                    .AsQueryable();
+
+            return await room.FirstOrDefaultAsync();
+        }
     }
 }

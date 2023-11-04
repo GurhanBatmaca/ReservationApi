@@ -9,5 +9,6 @@ namespace Data.Abstract
         Task<int> GetAllRoomsCount();
         Task<List<Room>> GetRoomsBySearch(RoomFilterModel model,int page,int pageSize);
         Task<int> GetRoomsCountBySearch(RoomFilterModel model);
+        Task<Room?> GetRoomDetails(int id);
     }
 }

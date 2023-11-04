@@ -67,6 +67,14 @@ namespace Business.Abstract
             return roomListDTO; 
         }
 
+        public async Task<RoomDTO> GetRoomDetails(int id)
+        {
+            var entity = await _unitOfWork.Rooms.GetRoomDetails(id);
+
+            return RoomToRoomDTO.RoomToRoomDTOObject(entity!);
+        }
+
+
         public async Task<RoomListDTO> GetRoomsBySearch(RoomFilterModel model, int page)
         {
             var pageSize = 4;

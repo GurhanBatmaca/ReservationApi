@@ -18,6 +18,23 @@ namespace App.Controllers
         }
 
         [HttpGet]
+        [Route("rooms/details/{id}")]
+
+        public async Task<IActionResult> Room(int id)
+        {       
+
+            var entity = await _roomService.GetRoomDetails(id);
+            if(entity == null)    
+            {
+                return BadRequest(new {error = "Room not found."});
+            }
+
+            var room = await _roomService.GetRoomDetails(id);
+
+            return Ok(room);
+        }
+
+        [HttpGet]
         [Route("rooms")]
 
         public async Task<IActionResult> Rooms(int page=1)

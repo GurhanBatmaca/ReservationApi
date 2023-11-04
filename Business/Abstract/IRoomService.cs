@@ -8,7 +8,7 @@ namespace Business.Abstract
         public string? Message { get; set; }
         Task<RoomListDTO> GetAllRooms(int page);
         Task<RoomListDTO> GetRoomsBySearch(RoomFilterModel model,int page);
-
         Task<bool> CreateAsync(RoomModel model);
+        Task<RoomDTO> GetRoomDetails(int id);
     }
 }
