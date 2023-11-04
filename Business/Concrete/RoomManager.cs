@@ -51,6 +51,20 @@ namespace Business.Abstract
             return true;
         }
 
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var entity = await _unitOfWork.Rooms.GetByIdAsync(id);
+            if(entity == null)    
+            {
+                Message += "Room not found.";
+                return false;
+            }
+
+            await _unitOfWork.Rooms.DeleteAsync(entity);
+
+            Message += "Room deleted.";
+            return true;
+        }
 
         public async Task<RoomListDTO> GetAllRooms(int page)
         {

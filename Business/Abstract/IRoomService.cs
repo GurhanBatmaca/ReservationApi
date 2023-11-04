@@ -10,6 +10,7 @@ namespace Business.Abstract
         Task<RoomListDTO> GetAllRooms(int page);
         Task<RoomListDTO> GetRoomsBySearch(RoomFilterModel model,int page);
         Task<bool> CreateAsync(RoomModel model);
+        Task<bool> DeleteAsync(int id);
         Task<Room?> GetByIdAsync(int id);
         Task<RoomDTO> GetRoomDetails(int id);
     }

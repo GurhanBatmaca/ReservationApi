@@ -8,7 +8,7 @@ namespace App.Controllers
 
     [ApiController]
     [Route("api/admin")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public class AdminController: ControllerBase
     {
 
@@ -34,6 +34,20 @@ namespace App.Controllers
 
             return BadRequest(new {error = _roomService.Message} );
             
+        }
+
+        [HttpDelete]
+        [Route("deleteroom/{id}")]
+        public async Task<IActionResult> DeleteRoom(int id)
+        {
+
+            if(await _roomService.DeleteAsync(id))    
+            {
+                return Ok(new {message = _roomService.Message} );
+            }
+           
+            return BadRequest(new {error = _roomService.Message} );
+          
         }
 
 

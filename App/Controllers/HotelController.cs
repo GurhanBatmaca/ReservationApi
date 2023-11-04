@@ -1,5 +1,4 @@
 using Business.Abstract;
-using Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers

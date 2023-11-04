@@ -6,7 +6,7 @@ namespace Data
     {
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAstnc(T entity);
+        Task DeleteAsync(T entity);
         Task<List<T>> GetAllAsync();
         Task<T?> GetByIdAsync(int id);
     }

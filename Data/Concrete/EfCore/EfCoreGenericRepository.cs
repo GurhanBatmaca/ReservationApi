@@ -17,7 +17,7 @@ namespace Data.Concrete.EfCore
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAstnc(T entity)
+        public async Task DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
             await _context.SaveChangesAsync();
