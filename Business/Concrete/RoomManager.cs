@@ -67,11 +67,17 @@ namespace Business.Abstract
             return roomListDTO; 
         }
 
+        public async Task<Room?> GetByIdAsync(int id)
+        {
+            return await _unitOfWork.Rooms.GetByIdAsync(id);
+        }
+
+
         public async Task<RoomDTO> GetRoomDetails(int id)
         {
             var entity = await _unitOfWork.Rooms.GetRoomDetails(id);
-
             return RoomToRoomDTO.RoomToRoomDTOObject(entity!);
+            
         }
 
 

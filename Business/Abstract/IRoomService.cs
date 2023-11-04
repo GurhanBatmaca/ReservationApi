@@ -1,3 +1,4 @@
+using Entity;
 using Shared.DTO.DTOModels;
 using Shared.Models;
 
@@ -9,6 +10,7 @@ namespace Business.Abstract
         Task<RoomListDTO> GetAllRooms(int page);
         Task<RoomListDTO> GetRoomsBySearch(RoomFilterModel model,int page);
         Task<bool> CreateAsync(RoomModel model);
+        Task<Room?> GetByIdAsync(int id);
         Task<RoomDTO> GetRoomDetails(int id);
     }
 }

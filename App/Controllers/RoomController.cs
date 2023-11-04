@@ -23,7 +23,7 @@ namespace App.Controllers
         public async Task<IActionResult> Room(int id)
         {       
 
-            var entity = await _roomService.GetRoomDetails(id);
+            var entity = await _roomService.GetByIdAsync(id);
             if(entity == null)    
             {
                 return BadRequest(new {error = "Room not found."});
