@@ -20,14 +20,18 @@ namespace App.Controllers
         public async Task<IActionResult> Hotels(int page=1)
         {
 
-            var hotels = await _hotelService.GetAllHotels(page);
+            var hotelListDTO = await _hotelService.GetAllHotels(page);
             
-            if(hotels == null)
+            if(hotelListDTO == null)
             {
                 return BadRequest();
             }
+            if(hotelListDTO.Hotels!.Count == 0)
+            {
+                return NoContent();
+            }
 
-            return Ok(hotels);
+            return Ok(hotelListDTO);
         }
 
         [HttpGet]
@@ -35,14 +39,18 @@ namespace App.Controllers
 
         public async Task<IActionResult> HomePageHotels(int page=1)
         {
-            var hotels = await _hotelService.GetHomePageHotels(page);
+            var hotelListDTO = await _hotelService.GetHomePageHotels(page);
             
-            if(hotels == null)
+            if(hotelListDTO == null)
             {
                 return BadRequest();
             }
+            if(hotelListDTO.Hotels!.Count == 0)
+            {
+                return NoContent();
+            }
 
-            return Ok(hotels);
+            return Ok(hotelListDTO);
         }
     }
 }

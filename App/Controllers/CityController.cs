@@ -18,14 +18,18 @@ namespace App.Controllers
         [Route("cities")]
         public async Task<IActionResult> Cities()
         {
-            var cities = await _cityService.GetAllAync();
+            var cityListDTO = await _cityService.GetAllAync();
 
-            if(cities == null)
+            if(cityListDTO == null)
             {
                 return BadRequest();
             }
+            if(cityListDTO.Cities!.Count == 0)
+            {
+                return NoContent();
+            }
 
-            return Ok(cities);
+            return Ok(cityListDTO);
         }
     }
 }

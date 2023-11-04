@@ -16,14 +16,18 @@ namespace App.Controllers
         [Route("companies")]
         public async Task<IActionResult> Companies()
         {
-            var companies = await _companyService.GetAllAync();
+            var companyListDTO = await _companyService.GetAllAync();
 
-            if(companies == null)
+            if(companyListDTO == null)
             {
                 return BadRequest();
             }
+            if(companyListDTO.Companies!.Count == 0)
+            {
+                return NoContent();
+            }
 
-            return Ok(companies);
+            return Ok(companyListDTO);
         }
     }
 }

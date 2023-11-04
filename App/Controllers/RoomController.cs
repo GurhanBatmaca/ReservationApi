@@ -29,9 +29,9 @@ namespace App.Controllers
                 return BadRequest(new {error = "Room not found."});
             }
 
-            var room = await _roomService.GetRoomDetails(id);
+            var roomDTO = await _roomService.GetRoomDetails(id);
 
-            return Ok(room);
+            return Ok(roomDTO);
         }
 
         [HttpGet]
@@ -40,14 +40,19 @@ namespace App.Controllers
         public async Task<IActionResult> Rooms(int page=1)
         {       
 
-            var rooms = await _roomService.GetAllRooms(page);      
+            var roomListDTO = await _roomService.GetAllRooms(page);      
 
-            if(rooms == null)    
+            if(roomListDTO == null)    
             {
                 return BadRequest();
             }
 
-            return Ok(rooms);
+            if(roomListDTO.Rooms!.Count == 0)
+            {
+                return NoContent();
+            }
+
+            return Ok(roomListDTO);
         } 
 
         [HttpPost]
@@ -56,14 +61,18 @@ namespace App.Controllers
         public async Task<IActionResult> RoomsBySearch([FromBody] RoomFilterModel model,int page=1)
         { 
 
-            var rooms = await _roomService.GetRoomsBySearch(model,page);  
+            var roomListDTO = await _roomService.GetRoomsBySearch(model,page);  
 
-            if(rooms == null)    
+            if(roomListDTO == null)    
             {
                 return BadRequest();
             }
+            if(roomListDTO.Rooms!.Count == 0)
+            {
+                return NoContent();
+            }
 
-            return Ok(rooms);
+            return Ok(roomListDTO);
                          
         }
 
